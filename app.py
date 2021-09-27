@@ -1,9 +1,10 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_pymongo import PyMongo
 import scraping
-
+import os
+STATIC_DIR=os.path.abspath('./static')
 #set up flask
-app = Flask(__name__)
+app = Flask(__name__,static_folder=STATIC_DIR)
 
 #tell python how to connect to mongo using pymongo
 app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
@@ -28,4 +29,4 @@ def scrape():
 
 #tell Flask to run
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
